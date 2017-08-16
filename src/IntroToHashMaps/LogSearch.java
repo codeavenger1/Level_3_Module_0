@@ -1,6 +1,29 @@
 package IntroToHashMaps;
 
-public class LogSearch {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.HashMap;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+public class LogSearch implements ActionListener {
+	JFrame frame;
+	JPanel panel;
+	JButton button;
+	JButton button1;
+	JButton button2;
+	HashMap<Integer, String> logSearch = new HashMap<Integer, String>();
+	public static void main(String[] args) {
+		
+		LogSearch log = new LogSearch();
+		log.main2();
+		
+	}
   /* 
 	 * Crate a HashMap of Integers for the keys and Strings for the values.
 	 * Create a GUI with three buttons. 
@@ -28,4 +51,40 @@ public class LogSearch {
 	 * 				is not in the list. 
 	 *
 	 * */
+	void main2(){
+		frame = new JFrame();
+		panel = new JPanel();
+		button = new JButton();
+		button1 = new JButton();
+		button2 = new JButton();
+		frame.add(panel);
+		panel.add(button);
+		panel.add(button1);
+		panel.add(button2);
+		button.setText("Add Entry");
+		button1.setText("Search by ID");
+		button2.setText("View List");
+		frame.setVisible(true);
+		frame.setSize(500, 500);
+		button.addActionListener(this);
+		button2.addActionListener(this);
+		button1.addActionListener(this);
+		
+		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource() == button) {
+			String IDnum =JOptionPane.showInputDialog("Enter an ID number");
+			String name =JOptionPane.showInputDialog("Enter a name");
+			int ID = Integer.parseInt(IDnum);
+			logSearch.put(ID, name);
+		}
+		if (e.getSource() == button1) {
+			String ID2 = JOptionPane.showInputDialog("Enter an ID number");
+			JOptionPane.showMessageDialog(null, logSearch.get(ID2));
+		}
+	}
 }
