@@ -11,12 +11,18 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+
 public class LogSearch implements ActionListener {
 	JFrame frame;
 	JPanel panel;
 	JButton button;
 	JButton button1;
 	JButton button2;
+	JButton button3;
+	String IDnum;
+	String name;
+	String IDentry;
 	HashMap<Integer, String> logSearch = new HashMap<Integer, String>();
 	public static void main(String[] args) {
 		
@@ -57,18 +63,22 @@ public class LogSearch implements ActionListener {
 		button = new JButton();
 		button1 = new JButton();
 		button2 = new JButton();
+		button3 = new JButton();
 		frame.add(panel);
 		panel.add(button);
 		panel.add(button1);
 		panel.add(button2);
+		panel.add(button3);
 		button.setText("Add Entry");
 		button1.setText("Search by ID");
 		button2.setText("View List");
+		button3.setText("Remove Entry");
 		frame.setVisible(true);
 		frame.setSize(500, 500);
 		button.addActionListener(this);
 		button2.addActionListener(this);
 		button1.addActionListener(this);
+		button3.addActionListener(this);
 		
 		
 	}
@@ -77,14 +87,40 @@ public class LogSearch implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == button) {
-			String IDnum =JOptionPane.showInputDialog("Enter an ID number");
-			String name =JOptionPane.showInputDialog("Enter a name");
+			IDnum =JOptionPane.showInputDialog("Enter an ID number");
+			name =JOptionPane.showInputDialog("Enter a name");
 			int ID = Integer.parseInt(IDnum);
 			logSearch.put(ID, name);
 		}
-		if (e.getSource() == button1) {
+		
+		else if (e.getSource() == button1) {
 			String ID2 = JOptionPane.showInputDialog("Enter an ID number");
-			JOptionPane.showMessageDialog(null, logSearch.get(ID2));
+			int ID3 = Integer.parseInt(ID2);
+				String names = logSearch.get(ID3);
+				JOptionPane.showMessageDialog(null, names);
 		}
+		
+		
+		else if (e.getSource() == button2) {
+			String view = "";
+			for (Integer views : logSearch.keySet()) {
+				view+="ID: " + views + " Name: " + logSearch.get(views) + "\n";
+			}
+			JOptionPane.showMessageDialog(null, view);	
+		
+		}
+		
+		else if (e.getSource() == button3) {
+			IDentry = JOptionPane.showInputDialog("Enter an ID number");
+			int entry = Integer.parseInt(IDentry);
+			if (logSearch.containsKey(entry)) {
+				logSearch.remove(entry);
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "That ID number does not exist");
+			}
+			
+		}
+		
 	}
 }
