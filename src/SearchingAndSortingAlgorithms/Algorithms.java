@@ -44,6 +44,44 @@ public class Algorithms {
 		}
 		return person;
 	}
+	public static String findLongestWord(List<String> words) {
+		String word = "";
+		for(String longest : words) {
+			words.indexOf(longest);
+			if (word.length()<longest.length()) {
+				word = longest;
+			}
+			
+		}
+		return word;
+	}
+	public static Boolean containsSOS(List<String> message1) {
+		
+		for(String contains : message1) {
+			
+			if (contains.contains("... --- ...")) {
+			 return true;
+			 
+			}
 	
+		}
+		return false;
+		
+	}
+//public static double sortScores(List<Double> results) {
+//		double score = 0;
+//		for(Double s : results) {
+//			results.indexOf(s);
+//			if (s>score) {
+//			 
+//			 
+//			}
+//	
+//		}
+//		return score;
+//		
+//		
+//	}
+
 	//Add other methods here
 }
