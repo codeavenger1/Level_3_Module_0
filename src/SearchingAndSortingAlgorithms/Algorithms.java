@@ -1,6 +1,11 @@
 package SearchingAndSortingAlgorithms;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 public class Algorithms {
 	public static int findBrokenEgg(List<String> eggs) {
@@ -14,10 +19,6 @@ public class Algorithms {
 		}
 		
 		return 0;
-
-			
-		
-		 //<- this needs changing
 	}
 	
 	public static int countPearls(List<Boolean> oysters) {
@@ -68,20 +69,38 @@ public class Algorithms {
 		return false;
 		
 	}
-//public static double sortScores(List<Double> results) {
-//		double score = 0;
-//		for(Double s : results) {
-//			results.indexOf(s);
-//			if (s>score) {
-//			 
-//			 
-//			}
-//	
-//		}
-//		return score;
-//		
-//		
-//	}
 
-	//Add other methods here
+			
+public static List<Double> sortScores(List<Double> results) {
+	Collections.sort(results); 
+	return results;
+			}
+
+
+		
+ public static List<String> sortDNA(List<String> unsortedSequences) {
+	 for (int i = 0; i < unsortedSequences.size(); i++) {
+		for (int j = i+1; j < unsortedSequences.size(); j++) {
+			String temp = unsortedSequences.get(i);
+			String s1 = unsortedSequences.get(j);
+			String s2 = unsortedSequences.get(i);
+			if (s1.length()<s2.length()) {
+				unsortedSequences.set(i,unsortedSequences.get(j));
+				unsortedSequences.set(j, temp);
+			}
+			
+		}
+		
+	}
+		return unsortedSequences;
+	 
+ }
+
+public static List<String> sortWords(List<String> words) {
+	
+	java.util.Collections.sort(words);
+	System.out.println(words);
+	
+	return words;
 }
+ }
